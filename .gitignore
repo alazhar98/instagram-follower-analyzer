@@ -46,9 +46,15 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
+# Project specific - Personal Instagram data
 not_following_back.txt
 connections/followers_and_following/*.html
+
+# Personal Instagram data (keep these private!)
+# Add your real Instagram data files here to prevent accidental commits
+# Example:
+# connections/followers_and_following/followers_1.html
+# connections/followers_and_following/following.html
 
 # Logs
 *.log

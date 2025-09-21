@@ -156,3 +156,17 @@ This project is open source and available under the [MIT License](LICENSE).
 - Results are sorted alphabetically for easy reading
 - This tool is for personal use only - respect Instagram's Terms of Service
 
+## 🔒 Privacy & Security
+
+**IMPORTANT**: This repository contains sample data only. When using with your real Instagram data:
+
+1. **Never commit personal data** - Your real Instagram HTML files contain private information
+2. **Use .gitignore** - The repository is configured to ignore personal data files
+3. **Keep results private** - The `not_following_back.txt` file contains personal follower information
+4. **Respect privacy** - Don't share other people's usernames or follow data publicly
+
+### How to Use with Your Real Data:
+1. Replace the sample HTML files in `connections/followers_and_following/` with your real Instagram export
+2. Run the script locally
+3. Keep the results private - don't commit them to version control
+
