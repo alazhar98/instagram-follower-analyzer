@@ -1,5 +1,9 @@
 # Instagram Follower Analyzer
 
+[
+  Buy Pro on Gumroad →
+](https://alazhar4.gumroad.com/l/instgram)
+
 A Python script that analyzes your Instagram followers and following data to find accounts that you follow but who don't follow you back. Perfect for cleaning up your following list and identifying one-sided relationships.
 
 ## 🚀 Quick Start
