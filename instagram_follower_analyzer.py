@@ -13,8 +13,17 @@ Requirements:
 from bs4 import BeautifulSoup
 import os
 import sys
+from typing import Set
 
-def extract_usernames_from_html(file_path):
+try:
+    # Local license configuration with placeholder keys
+    from license_config import is_license_valid
+except Exception:
+    # Fallback if file missing; treat as invalid until provided
+    def is_license_valid(key: str) -> bool:  # type: ignore
+        return False
+
+def extract_usernames_from_html(file_path: str) -> Set[str]:
     """
     Extract usernames from Instagram HTML file.
     
@@ -55,6 +64,23 @@ def extract_usernames_from_html(file_path):
 
 def main():
     """Main function to analyze followers and following."""
+    # License check (simple local validation)
+    license_key = os.getenv("LICENSE_KEY", "").strip()
+    if not license_key:
+        # Optional fallback to file-based key for convenience
+        key_file_path = "LICENSE_KEY.txt"
+        if os.path.exists(key_file_path):
+            try:
+                with open(key_file_path, "r", encoding="utf-8") as key_file:
+                    license_key = key_file.read().strip()
+            except Exception:
+                license_key = ""
+
+    if not license_key or not is_license_valid(license_key):
+        print("License error: A valid license key is required to run Instagram Follower Analyzer Pro.")
+        print("- Set environment variable LICENSE_KEY or create a LICENSE_KEY.txt file with your key.")
+        print("- If you purchased a license and still see this message, contact support.")
+        sys.exit(1)
     
     # Check if required files exist
     followers_file = 'connections/followers_and_following/followers_1.html'

@@ -124,6 +124,20 @@ pip install -r requirements.txt
    python3 instagram_follower_analyzer.py
    ```
 
+## 💳 Purchase & Activation (Pro)
+
+- Purchase: Provide buyers with a ZIP or private repo access after payment (e.g., Gumroad/Lemon Squeezy/Stripe).
+- Activation: Set your license key via environment variable or file:
+
+```bash
+export LICENSE_KEY=YOUR_KEY_HERE
+python3 instagram_follower_analyzer.py
+```
+
+Or create a `LICENSE_KEY.txt` (same folder) containing only the key.
+
+If validation fails, the script prints instructions and exits.
+
 ## 📊 Sample Output
 
 ```

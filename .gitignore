@@ -29,6 +29,10 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.env
+.env.local
+.env.*.local
+LICENSE_KEY.txt
 
 # IDE
 .vscode/
