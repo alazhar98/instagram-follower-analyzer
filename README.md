@@ -4,6 +4,10 @@
   Buy Pro on Gumroad →
 ](https://alazhar4.gumroad.com/l/instgram)
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+[![Buy Pro](https://img.shields.io/badge/Buy%20Pro-Gumroad-36a9ae?logo=gumroad&logoColor=white)](https://alazhar4.gumroad.com/l/instgram)
+[![License](https://img.shields.io/badge/License-MIT-informational)](LICENSE)
+
 A Python script that analyzes your Instagram followers and following data to find accounts that you follow but who don't follow you back. Perfect for cleaning up your following list and identifying one-sided relationships.
 
 ## 🚀 Quick Start
