@@ -13,7 +13,10 @@ Requirements:
 from bs4 import BeautifulSoup
 import os
 import sys
-from typing import Set
+from typing import Set, Optional
+import json
+import urllib.request
+import urllib.parse
 
 try:
     # Local license configuration with placeholder keys
@@ -64,7 +67,7 @@ def extract_usernames_from_html(file_path: str) -> Set[str]:
 
 def main():
     """Main function to analyze followers and following."""
-    # License check (simple local validation)
+    # License check with optional Gumroad verification
     license_key = os.getenv("LICENSE_KEY", "").strip()
     if not license_key:
         # Optional fallback to file-based key for convenience
@@ -76,9 +79,40 @@ def main():
             except Exception:
                 license_key = ""
 
-    if not license_key or not is_license_valid(license_key):
+    def verify_with_gumroad(product_id: Optional[str], key: str) -> bool:
+        if not product_id:
+            return False
+        try:
+            verify_url = os.getenv(
+                "GUMROAD_VERIFY_URL",
+                "https://api.gumroad.com/v2/licenses/verify",
+            )
+            payload = {
+                "product_id": product_id,
+                "license_key": key,
+                # Optional: increment uses count
+                "increment_uses_count": True,
+            }
+            data = urllib.parse.urlencode(payload).encode("utf-8")
+            req = urllib.request.Request(verify_url, data=data, method="POST")
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                body = resp.read().decode("utf-8", errors="ignore")
+                parsed = json.loads(body)
+                return bool(parsed.get("success"))
+        except Exception:
+            return False
+
+    product_id = os.getenv("GUMROAD_PRODUCT_ID", "").strip()
+    gumroad_ok = False
+    if license_key and product_id:
+        gumroad_ok = verify_with_gumroad(product_id, license_key)
+
+    local_ok = is_license_valid(license_key) if license_key else False
+
+    if not license_key or not (gumroad_ok or local_ok):
         print("License error: A valid license key is required to run Instagram Follower Analyzer Pro.")
         print("- Set environment variable LICENSE_KEY or create a LICENSE_KEY.txt file with your key.")
+        print("- For Gumroad, also set GUMROAD_PRODUCT_ID to enable online verification.")
         print("- If you purchased a license and still see this message, contact support.")
         sys.exit(1)
     

@@ -126,15 +126,16 @@ pip install -r requirements.txt
 
 ## 💳 Purchase & Activation (Pro)
 
-- Purchase: Provide buyers with a ZIP or private repo access after payment (e.g., Gumroad/Lemon Squeezy/Stripe).
-- Activation: Set your license key via environment variable or file:
+- Purchase: Provide buyers with a ZIP or private repo access after payment.
+- Activation (Gumroad): set LICENSE_KEY and your product id; the script verifies online.
 
 ```bash
 export LICENSE_KEY=YOUR_KEY_HERE
+export GUMROAD_PRODUCT_ID=YOUR_PRODUCT_ID
 python3 instagram_follower_analyzer.py
 ```
 
-Or create a `LICENSE_KEY.txt` (same folder) containing only the key.
+Or offline activation: create a `LICENSE_KEY.txt` (same folder) containing only the key and ensure it is present in your local allowlist in `license_config.py`.
 
 If validation fails, the script prints instructions and exits.
 
